@@ -4,7 +4,7 @@
 
 ![Chart of data flow](/img/Flowcharts.png)
 
-Above chart shows flow of data in the project. In first phase of data flow, webscraping from Otodom site is done. It is done using BeatifulSoup and Python. There are few items extracted, including IDs, title, size of flat, district, add date and price. This proccess is orchestrated using Airflow which is running in Docker container. There is DAG in Airflow enveirment which is transfering data from website to MongoDB Atlas instance. 
+Above chart shows flow of data in the project. In first phase of data flow, webscraping from Otodom site is done. It is done using BeautifulSoup and Python. There are few items extracted, including IDs, title, size of flat, district, add date and price. This proccess is orchestrated using Airflow which is running in Docker container. There is DAG in Airflow enveirment which is transfering data from website to MongoDB Atlas instance. 
 
 ![Airflow](/img/airflow.png)
 
