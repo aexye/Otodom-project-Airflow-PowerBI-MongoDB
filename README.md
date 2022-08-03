@@ -1,4 +1,4 @@
-#Project of data visualization of Otodom rental offers using Airflow, MongoDB, PowerBI and BeatifulSoup
+# Project of data visualization of Otodom rental offers using Airflow, MongoDB, PowerBI and BeatifulSoup
 
 # Process chart
 
@@ -24,7 +24,7 @@ Report also allows to filter things like:
 
 ![Power BI](/img/powerbi.png)
 
-#Files
+# Files
 
 - Dockerfile and docker-compose.yaml - files that allows to use Airflow,
 - webscrapping-dag.py - implemented version of webscrapping.py to Airflow/DAG,
