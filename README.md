@@ -1,20 +1,38 @@
-# Webscraper ogłoszeń z Otodom.pl + baza MongoDB + raport z wizualizacją w Power BI
+#Project of data visualization of Otodom rental offers using Airflow, MongoDB, PowerBI and BeatifulSoup
 
-- Za orkiestrację odpowiada Airflow i stworzony w nim DAG
-- Airflow uruchomiony jest w kontenerze Dockerowym
-- Dane pobrane z serwisu Otodom przechowywane są bazie MongoDB. Pobierane zmienne to: tytuł ogłoszenia, cena, liczba pokoi, powierzchnia, lokalizacja, data dodania i data usunięcia ogłoszenia, czy ogłoszenie jest aktywne, link do ogłoszenia
-- Na podstawie danych z MongoDB zbudowany został raport w Power BI, który pozwala filtrować ogłoszenia po dzielnicy, określać średnią cenę, liczbę pokoi i powierzchnię szukanego mieszkania. Dodatkowo w drugiej zakładce można podejrzeć posrtowane po cenie linki do ogłoszeń pasujących do ustawionych filtrów
+# Process chart
 
-# Raport w Power BI
+![Chart of data flow](/img/Flowcharts.png)
 
-![Power BI](/img/powerbi.png)
-
-# DAG w Airflow
+Above chart shows flow of data in the project. In first phase of data flow, webscraping from Otodom site is done. It is done using BeatifulSoup and Python. There are few items extracted, including IDs, title, size of flat, district, add date and price. This proccess is orchestrated using Airflow which is running in Docker container. There is DAG in Airflow enveirment which is transfering data from website to MongoDB Atlas instance. 
 
 ![Airflow](/img/airflow.png)
 
-# Pliki
-- get_data_for_PowerBI.py - zawiera skrypt pozwalający w łatwy sposób w PowerBI pobrać dane z bazy MongoDB
-- webscraping.py - skrypt odpowiedzialny za pobieranie ogłoszeń
-- werbscraping_dag.py - ten sam skrypt, zaimplementowany w formie DAGa w Airflow
-- Dockerfile i docker-compose.yaml - pliki pozwalające uruchomić kontener Dockerowy zawierający Apache Airflow
+In next step data is loaded to Power BI report which shows several things:
+
+- price in each district on map,
+- count of ads in each district,
+- number of rooms in offers,
+- average price of rental offers.
+
+Report also allows to filter things like:
+
+- district,
+- size of flat,
+- number of rooms
+- date of ad addition.
+
+![Power BI](/img/powerbi.png)
+
+#Files
+
+- Dockerfile and docker-compose.yaml - files that allows to use Airflow,
+- webscrapping-dag.py - implemented version of webscrapping.py to Airflow/DAG,
+- get_data_for_PowerBI.py - custom connector for PowerBI to download data from MongoDB,
+- warszawa-dzielnice.geojson - map of Warsaw districts
+
+
+
+
+
+
